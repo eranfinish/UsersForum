@@ -1,0 +1,127 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\finis\\source\\Projects\\UsersForum\\UsersForumService\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{343E3B55-4B95-4E46-8984-34EDDE5F4F34}|UsersForum.API\\UsersForum.API.csproj|c:\\users\\finis\\source\\projects\\usersforum\\usersforumservice\\usersforum.api\\validations\\uservalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{343E3B55-4B95-4E46-8984-34EDDE5F4F34}|UsersForum.API\\UsersForum.API.csproj|solutionrelative:usersforum.api\\validations\\uservalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{343E3B55-4B95-4E46-8984-34EDDE5F4F34}|UsersForum.API\\UsersForum.API.csproj|c:\\users\\finis\\source\\projects\\usersforum\\usersforumservice\\usersforum.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{343E3B55-4B95-4E46-8984-34EDDE5F4F34}|UsersForum.API\\UsersForum.API.csproj|solutionrelative:usersforum.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{343E3B55-4B95-4E46-8984-34EDDE5F4F34}|UsersForum.API\\UsersForum.API.csproj|c:\\users\\finis\\source\\projects\\usersforum\\usersforumservice\\usersforum.api\\controllers\\postcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{343E3B55-4B95-4E46-8984-34EDDE5F4F34}|UsersForum.API\\UsersForum.API.csproj|solutionrelative:usersforum.api\\controllers\\postcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{343E3B55-4B95-4E46-8984-34EDDE5F4F34}|UsersForum.API\\UsersForum.API.csproj|c:\\users\\finis\\source\\projects\\usersforum\\usersforumservice\\usersforum.api\\validations\\userloginvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{343E3B55-4B95-4E46-8984-34EDDE5F4F34}|UsersForum.API\\UsersForum.API.csproj|solutionrelative:usersforum.api\\validations\\userloginvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{343E3B55-4B95-4E46-8984-34EDDE5F4F34}|UsersForum.API\\UsersForum.API.csproj|c:\\users\\finis\\source\\projects\\usersforum\\usersforumservice\\usersforum.api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{343E3B55-4B95-4E46-8984-34EDDE5F4F34}|UsersForum.API\\UsersForum.API.csproj|solutionrelative:usersforum.api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0040EDB5-9F4D-4528-AD70-B14720B105D0}|UsersForum.Core\\UsersForum.Core.csproj|c:\\users\\finis\\source\\projects\\usersforum\\usersforumservice\\usersforum.core\\services\\posts\\postservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0040EDB5-9F4D-4528-AD70-B14720B105D0}|UsersForum.Core\\UsersForum.Core.csproj|solutionrelative:usersforum.core\\services\\posts\\postservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 274,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\finis\\source\\Projects\\UsersForum\\UsersForumService\\UsersForum.API\\Program.cs",
+              "RelativeDocumentMoniker": "UsersForum.API\\Program.cs",
+              "ToolTip": "C:\\Users\\finis\\source\\Projects\\UsersForum\\UsersForumService\\UsersForum.API\\Program.cs",
+              "RelativeToolTip": "UsersForum.API\\Program.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAD4vzkAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-11T13:35:05.812Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PostController.cs",
+              "DocumentMoniker": "C:\\Users\\finis\\source\\Projects\\UsersForum\\UsersForumService\\UsersForum.API\\Controllers\\PostController.cs",
+              "RelativeDocumentMoniker": "UsersForum.API\\Controllers\\PostController.cs",
+              "ToolTip": "C:\\Users\\finis\\source\\Projects\\UsersForum\\UsersForumService\\UsersForum.API\\Controllers\\PostController.cs",
+              "RelativeToolTip": "UsersForum.API\\Controllers\\PostController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-11T13:21:28.202Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\Users\\finis\\source\\Projects\\UsersForum\\UsersForumService\\UsersForum.API\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "UsersForum.API\\Controllers\\UserController.cs",
+              "ToolTip": "C:\\Users\\finis\\source\\Projects\\UsersForum\\UsersForumService\\UsersForum.API\\Controllers\\UserController.cs",
+              "RelativeToolTip": "UsersForum.API\\Controllers\\UserController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-11T13:20:24.319Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UserValidator.cs",
+              "DocumentMoniker": "C:\\Users\\finis\\source\\Projects\\UsersForum\\UsersForumService\\UsersForum.API\\Validations\\UserValidator.cs",
+              "RelativeDocumentMoniker": "UsersForum.API\\Validations\\UserValidator.cs",
+              "ToolTip": "C:\\Users\\finis\\source\\Projects\\UsersForum\\UsersForumService\\UsersForum.API\\Validations\\UserValidator.cs",
+              "RelativeToolTip": "UsersForum.API\\Validations\\UserValidator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAcAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-11T13:19:43.318Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "UserLoginValidator.cs",
+              "DocumentMoniker": "C:\\Users\\finis\\source\\Projects\\UsersForum\\UsersForumService\\UsersForum.API\\Validations\\UserLoginValidator.cs",
+              "RelativeDocumentMoniker": "UsersForum.API\\Validations\\UserLoginValidator.cs",
+              "ToolTip": "C:\\Users\\finis\\source\\Projects\\UsersForum\\UsersForumService\\UsersForum.API\\Validations\\UserLoginValidator.cs",
+              "RelativeToolTip": "UsersForum.API\\Validations\\UserLoginValidator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-11T13:19:13.398Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "PostService.cs",
+              "DocumentMoniker": "C:\\Users\\finis\\source\\Projects\\UsersForum\\UsersForumService\\UsersForum.Core\\Services\\Posts\\PostService.cs",
+              "RelativeDocumentMoniker": "UsersForum.Core\\Services\\Posts\\PostService.cs",
+              "ToolTip": "C:\\Users\\finis\\source\\Projects\\UsersForum\\UsersForumService\\UsersForum.Core\\Services\\Posts\\PostService.cs",
+              "RelativeToolTip": "UsersForum.Core\\Services\\Posts\\PostService.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABkAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-11T13:18:45.613Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
