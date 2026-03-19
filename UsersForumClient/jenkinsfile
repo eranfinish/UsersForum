@@ -27,14 +27,14 @@ pipeline {
     stage('Build Docker Image') {
       steps {
         script {
-          def appVersion = sh(script: "cat users-forum-app/package.json | grep '\"version\"' | head -1 | awk -F: '{ print \$2 }' | sed 's/[\",]//g' | tr -d ' '", returnStdout: true).trim()
+          def appVersion = sh(script: "cat UsersForumClient/users-forum-app/package.json | grep '\"version\"' | head -1 | awk -F: '{ print \$2 }' | sed 's/[\",]//g' | tr -d ' '", returnStdout: true).trim()
           env.VERSION_TAG = "${appVersion}-${BUILD_NUMBER}"
         }
         sh """
           docker build \
             -t ${REGISTRY}/${IMAGE_NAME}:${env.VERSION_TAG} \
             -t ${FULL_IMAGE} \
-            .
+            UsersForumClient/
           echo "📦 Image size: \$(docker image inspect ${FULL_IMAGE} --format='{{.Size}}' | numfmt --to=iec)"
         """
       }
