@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "j2ZIyPUI6dvT1OJGMuICDYPkdw79BgtDQNC34K+AH64=",
+  "Source": "UsersForum.API",
+  "BasePath": "_content/UsersForum.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
