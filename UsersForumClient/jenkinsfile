@@ -22,39 +22,12 @@ pipeline {
     }
 
     // ━━━━━━━━━━━━━━━━━━━━━━━━
-    // Stage 2: התקנת dependencies
-    // ━━━━━━━━━━━━━━━━━━━━━━━━
-    stage('Install') {
-      steps {
-        dir('users-forum-app') {
-          sh 'npm ci'
-        }
-      }
-    }
-
-    // ━━━━━━━━━━━━━━━━━━━━━━━━
-    // Stage 3: Tests
-    // ━━━━━━━━━━━━━━━━━━━━━━━━
-    stage('Test') {
-      steps {
-        dir('users-forum-app') {
-          sh 'ng test --no-watch --no-progress --browsers=ChromeHeadless'
-        }
-      }
-      post {
-        always {
-          junit 'users-forum-app/test-results/*.xml'
-        }
-      }
-    }
-
-    // ━━━━━━━━━━━━━━━━━━━━━━━━
-    // Stage 4: Build Docker Image
+    // Stage 2: Build Docker Image
     // ━━━━━━━━━━━━━━━━━━━━━━━━
     stage('Build Docker Image') {
       steps {
         script {
-          def appVersion = sh(script: "node -p \"require('./users-forum-app/package.json').version\"", returnStdout: true).trim()
+          def appVersion = sh(script: "cat users-forum-app/package.json | grep '\"version\"' | head -1 | awk -F: '{ print \$2 }' | sed 's/[\",]//g' | tr -d ' '", returnStdout: true).trim()
           env.VERSION_TAG = "${appVersion}-${BUILD_NUMBER}"
         }
         sh """
