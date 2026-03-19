@@ -1,0 +1,138 @@
+pipeline {
+  agent any
+   
+
+  environment {
+    REGISTRY     = 'k3d-myregistry.localhost:5000'
+    IMAGE_NAME   = 'users-forum-client'
+    IMAGE_TAG    = "${BUILD_NUMBER}"
+    FULL_IMAGE   = "${REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}"
+    KUBECONFIG   = credentials('kubeconfig')
+  }
+  stages {
+
+    // ━━━━━━━━━━━━━━━━━━━━━━━━
+    // Stage 1: משיכת הקוד
+    // ━━━━━━━━━━━━━━━━━━━━━━━━
+    stage('Checkout') {
+      steps {
+        checkout scm
+        sh 'echo "✅ Code checked out: $(git log --oneline -1)"'
+      }
+    }
+
+    // ━━━━━━━━━━━━━━━━━━━━━━━━
+    // Stage 2: התקנת dependencies
+    // ━━━━━━━━━━━━━━━━━━━━━━━━
+    stage('Install') {
+      steps {
+        dir('users-forum-app') {
+          sh 'npm ci'
+        }
+      }
+    }
+
+    // ━━━━━━━━━━━━━━━━━━━━━━━━
+    // Stage 3: Tests
+    // ━━━━━━━━━━━━━━━━━━━━━━━━
+    stage('Test') {
+      steps {
+        dir('users-forum-app') {
+          sh 'ng test --no-watch --no-progress --browsers=ChromeHeadless'
+        }
+      }
+      post {
+        always {
+          junit 'users-forum-app/test-results/*.xml'
+        }
+      }
+    }
+
+    // ━━━━━━━━━━━━━━━━━━━━━━━━
+    // Stage 4: Build Docker Image
+    // ━━━━━━━━━━━━━━━━━━━━━━━━
+    stage('Build Docker Image') {
+      steps {
+        script {
+          def appVersion = sh(script: "node -p \"require('./users-forum-app/package.json').version\"", returnStdout: true).trim()
+          env.VERSION_TAG = "${appVersion}-${BUILD_NUMBER}"
+        }
+        sh """
+          docker build \
+            -t ${REGISTRY}/${IMAGE_NAME}:${env.VERSION_TAG} \
+            -t ${FULL_IMAGE} \
+            .
+          echo "📦 Image size: \$(docker image inspect ${FULL_IMAGE} --format='{{.Size}}' | numfmt --to=iec)"
+        """
+      }
+    }
+
+    // ━━━━━━━━━━━━━━━━━━━━━━━━
+    // Stage 5: Push לRegistry
+    // ━━━━━━━━━━━━━━━━━━━━━━━━
+    stage('Push Image') {
+      steps {
+        sh """
+          docker push ${FULL_IMAGE}
+          docker push ${REGISTRY}/${IMAGE_NAME}:${env.VERSION_TAG}
+          echo "✅ Pushed: ${FULL_IMAGE} and ${REGISTRY}/${IMAGE_NAME}:${env.VERSION_TAG}"
+        """
+      }
+    }
+
+    // ━━━━━━━━━━━━━━━━━━━━━━━━
+    // Stage 6: Deploy לKubernetes
+    // ━━━━━━━━━━━━━━━━━━━━━━━━
+    stage('Deploy to K8s') {
+      steps {
+        sh """
+          export KUBECONFIG=${KUBECONFIG}
+
+          kubectl set image deployment/users-forum-client \
+            users-forum-client=${FULL_IMAGE}
+
+          kubectl rollout status deployment/users-forum-client \
+            --timeout=120s
+
+          echo "☸️ Deployed version: ${IMAGE_TAG}"
+        """
+      }
+    }
+
+    // ━━━━━━━━━━━━━━━━━━━━━━━━
+    // Stage 7: Smoke Test
+    // ━━━━━━━━━━━━━━━━━━━━━━━━
+    stage('Smoke Test') {
+      steps {
+        sh """
+          sleep 10
+
+          curl -f http://localhost:80 \
+            || (echo "❌ Smoke test failed!" && exit 1)
+
+          echo "✅ Smoke test passed!"
+        """
+      }
+    }
+  }
+
+  // ━━━━━━━━━━━━━━━━━━━━━━━━
+  // Post actions — מה קורה בכל מצב
+  // ━━━━━━━━━━━━━━━━━━━━━━━━
+  post {
+    success {
+      echo "🎉 Pipeline הצליח! Version: ${IMAGE_TAG}"
+    }
+    failure {
+      echo "💥 Pipeline נכשל! מבצע rollback..."
+      sh """
+        export KUBECONFIG=${KUBECONFIG}
+        kubectl rollout undo deployment/users-forum-client
+        echo "↩️ Rollback בוצע!"
+      """
+    }
+    always {
+      sh 'docker image prune -f'
+    }
+  }
+}

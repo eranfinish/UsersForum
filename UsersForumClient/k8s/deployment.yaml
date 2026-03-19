@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: users-forum-client
+  namespace: users-forum-client
+spec:
+  replicas: 1 
+  selector:
+    matchLabels:
+      app: users-forum-client
+  template:
+    metadata:
+      labels:
+        app: users-forum-client
+    spec:
+      containers:
+        - name: users-forum-client
+          image: k3d-myregistry.localhost:5000/users-forum-client:1.0.0
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "256Mi"

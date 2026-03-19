@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: users-forum-service
+  namespace: users-forum-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: users-forum-service
+  template:
+    metadata:
+      labels:
+        app: users-forum-service
+    spec:
+      containers:
+        - name: users-forum-service
+          image: k3d-myregistry.localhost:5000/users-forum-service:1.0.0
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "256Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
