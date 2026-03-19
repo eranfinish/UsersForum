@@ -1,7 +1,7 @@
 FROM node:18 AS build
 WORKDIR /app
 COPY users-forum-app/package*.json ./
-RUN npm install
+RUN npm install --legacy-peer-deps
 COPY users-forum-app/ .
 RUN npm run build
 
