@@ -82,12 +82,14 @@ pipeline {
     stage('Smoke Test') {
       steps {
         sh """
-          sleep 10
-
-          curl -f http://localhost:80 \
-            || (echo "❌ Smoke test failed!" && exit 1)
-
-          echo "✅ Smoke test passed!"
+          sleep 5
+          READY=\$(kubectl get deployment/users-forum-client -n users-forum-client -o jsonpath='{.status.readyReplicas}')
+          if [ "\$READY" = "1" ]; then
+            echo "✅ Smoke test passed! Pod is running."
+          else
+            echo "❌ Smoke test failed! readyReplicas=\$READY"
+            exit 1
+          fi
         """
       }
     }
