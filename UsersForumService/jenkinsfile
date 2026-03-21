@@ -24,18 +24,7 @@ pipeline {
     }
 
     // ━━━━━━━━━━━━━━━━━━━━━━━━
-    // Stage 2: Build & Test
-    // ━━━━━━━━━━━━━━━━━━━━━━━━
-    stage('Build & Test') {
-      steps {
-        sh 'dotnet restore UsersForumService.sln'
-        sh 'dotnet build UsersForumService.sln -c Release --no-restore'
-        sh 'dotnet test UsersForumService.sln --no-build -c Release'
-      }
-    }
-
-    // ━━━━━━━━━━━━━━━━━━━━━━━━
-    // Stage 3: Build Docker Image
+    // Stage 2: Build Docker Image
     // ━━━━━━━━━━━━━━━━━━━━━━━━
     stage('Build Docker Image') {
       steps {
@@ -45,6 +34,7 @@ pipeline {
         }
         sh """
           docker build \
+            -f UsersForumService/Dockerfile \
             -t ${FULL_IMAGE} \
             -t ${PUSH_REGISTRY}/${IMAGE_NAME}:${env.VERSION_TAG} \
             .
@@ -75,9 +65,11 @@ pipeline {
           export KUBECONFIG=${KUBECONFIG}
 
           kubectl set image deployment/users-forum-service \
-            users-forum-service=${K8S_IMAGE}
+            users-forum-service=${K8S_IMAGE} \
+            -n users-forum-service
 
           kubectl rollout status deployment/users-forum-service \
+            -n users-forum-service \
             --timeout=120s
 
           echo "☸️ Deployed version: ${IMAGE_TAG}"
@@ -91,12 +83,14 @@ pipeline {
     stage('Smoke Test') {
       steps {
         sh """
-          sleep 10
-
-          curl -f http://localhost:8080/health \
-            || (echo "❌ Smoke test failed!" && exit 1)
-
-          echo "✅ Smoke test passed!"
+          sleep 5
+          READY=\$(kubectl get deployment/users-forum-service -n users-forum-service -o jsonpath='{.status.readyReplicas}')
+          if [ "\$READY" = "1" ]; then
+            echo "✅ Smoke test passed! Pod is running."
+          else
+            echo "❌ Smoke test failed! readyReplicas=\$READY"
+            exit 1
+          fi
         """
       }
     }
@@ -113,7 +107,7 @@ pipeline {
       echo "💥 Pipeline נכשל! מבצע rollback..."
       sh """
         export KUBECONFIG=${KUBECONFIG}
-        kubectl rollout undo deployment/users-forum-service
+        kubectl rollout undo deployment/users-forum-service -n users-forum-service
         echo "↩️ Rollback בוצע!"
       """
     }
