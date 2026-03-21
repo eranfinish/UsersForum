@@ -64,9 +64,11 @@ pipeline {
           export KUBECONFIG=${KUBECONFIG}
 
           kubectl set image deployment/users-forum-client \
-            users-forum-client=${K8S_IMAGE}
+            users-forum-client=${K8S_IMAGE} \
+            -n users-forum-client
 
           kubectl rollout status deployment/users-forum-client \
+            -n users-forum-client \
             --timeout=120s
 
           echo "☸️ Deployed version: ${IMAGE_TAG}"
@@ -102,7 +104,7 @@ pipeline {
       echo "💥 Pipeline נכשל! מבצע rollback..."
       sh """
         export KUBECONFIG=${KUBECONFIG}
-        kubectl rollout undo deployment/users-forum-client
+        kubectl rollout undo deployment/users-forum-client -n users-forum-client
         echo "↩️ Rollback בוצע!"
       """
     }
