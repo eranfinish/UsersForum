@@ -37,7 +37,7 @@ pipeline {
             -f UsersForumService/Dockerfile \
             -t ${FULL_IMAGE} \
             -t ${PUSH_REGISTRY}/${IMAGE_NAME}:${env.VERSION_TAG} \
-            .
+            UsersForumService/
           echo "📦 Image size: \$(docker image inspect ${FULL_IMAGE} --format='{{.Size}}' | numfmt --to=iec)"
         """
       }
