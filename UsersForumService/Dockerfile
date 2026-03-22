@@ -4,7 +4,7 @@ COPY ["UsersForumService/UsersForumService.csproj", "UsersForumService/"]
 COPY ["UsersForumService.DAL/UsersForumService.DAL.csproj", "UsersForumService.DAL/"]
 RUN dotnet restore "UsersForumService/UsersForumService.csproj"
 COPY . .
-RUN dotnet publish "UsersForumService/UsersForumService.csproj" -c Release -o /app/publish
+RUN dotnet publish "UsersForumService/UsersForumService.csproj" -c Release -o /app/publish --no-restore
 
 FROM mcr.microsoft.com/dotnet/aspnet:6.0
 WORKDIR /app
